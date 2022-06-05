@@ -20,8 +20,9 @@ class TicketList extends Component
     {
         $department = $this->department;
         $operatorGroupId = TOPDesk::getOperatorGroupId($this->department);
-        $tickets = TOPDesk::getOpenIncidentsByOperatorGroupId($operatorGroupId, "Open", true);
-        $class = "p-5";
+        $tickets = TOPDesk::getOpenIncidentsByOperatorGroupId($operatorGroupId, 'Open', true);
+        $class = 'p-5';
+
         return view('topdesk.ticket-list', compact('department', 'tickets', 'class'));
     }
 }

@@ -17,7 +17,6 @@ class TicketCounter extends Component
      * @param  string  $position
      * @param  string  $department
      * @param  string  $title
-     *
      * @return void
      */
     public function mount(string $position, string $department, string $title)
@@ -38,8 +37,7 @@ class TicketCounter extends Component
 
         $count = $this->getCount();
 
-        $class = $this->getClassThreshold($count)[ $title ];
-
+        $class = $this->getClassThreshold($count)[$title];
 
         return view('topdesk.ticket-counter', compact('department', 'count', 'title', 'class'));
     }
@@ -48,46 +46,45 @@ class TicketCounter extends Component
      * @param  int  $count
      * @param  int  $error
      * @param  int  $warning
-     *
      * @return string
      */
     private function threshold(int $count, int $error, int $warning): string
     {
         if ($count > $error) {
-            $class = "bg-error text-white";
+            $class = 'bg-error text-white';
         } elseif ($count >= $warning) {
-            $class = "bg-warning";
+            $class = 'bg-warning';
         } else {
-            $class = "bg-success";
+            $class = 'bg-success';
         }
+
         return $class;
     }
 
     /**
      * @param  int  $count
-     *
      * @return array
      */
     private function getClassThreshold(int $count): array
     {
         return match ($this->department) {
-            "I.T. Services" => [
-                "Open" => $this->threshold($count, 99, 30),
-                "Updated by user" => $this->threshold($count, 20, 10),
-                "Scheduled" => $this->threshold($count, 20, 10),
-                "Waiting for user" => $this->threshold($count, 10, 5),
+            'I.T. Services' => [
+                'Open' => $this->threshold($count, 99, 30),
+                'Updated by user' => $this->threshold($count, 20, 10),
+                'Scheduled' => $this->threshold($count, 20, 10),
+                'Waiting for user' => $this->threshold($count, 10, 5),
             ],
-            "Reprographics" => [
-                "Open" => $this->threshold($count, 20, 10),
-                "Updated by user" => $this->threshold($count, 10, 5),
-                "Scheduled" => $this->threshold($count, 10, 5),
-                "Waiting for user" => $this->threshold($count, 5, 3),
+            'Reprographics' => [
+                'Open' => $this->threshold($count, 20, 10),
+                'Updated by user' => $this->threshold($count, 10, 5),
+                'Scheduled' => $this->threshold($count, 10, 5),
+                'Waiting for user' => $this->threshold($count, 5, 3),
             ],
             default => [
-                "Open" => $this->threshold($count, 99, 30),
-                "Updated by user" => $this->threshold($count, 20, 10),
-                "Scheduled" => $this->threshold($count, 20, 10),
-                "Waiting for user" => $this->threshold($count, 10, 5),
+                'Open' => $this->threshold($count, 99, 30),
+                'Updated by user' => $this->threshold($count, 20, 10),
+                'Scheduled' => $this->threshold($count, 20, 10),
+                'Waiting for user' => $this->threshold($count, 10, 5),
             ]
         };
     }
@@ -98,13 +95,13 @@ class TicketCounter extends Component
     private function getCount(): int
     {
         return match ($this->title) {
-            "Open" => TOPDesk::getOpenIncidentsByOperatorGroupId($this->operatorGroupId)->count(),
-            "Waiting for user" => TOPDesk::getOpenIncidentsByOperatorGroupId($this->operatorGroupId,
+            'Open' => TOPDesk::getOpenIncidentsByOperatorGroupId($this->operatorGroupId)->count(),
+            'Waiting for user' => TOPDesk::getOpenIncidentsByOperatorGroupId($this->operatorGroupId,
                 'Waiting for user')->count(),
-            "Updated by user" => TOPDesk::getOpenIncidentsByOperatorGroupId($this->operatorGroupId,
+            'Updated by user' => TOPDesk::getOpenIncidentsByOperatorGroupId($this->operatorGroupId,
                 'Updated by user')->count(),
-            "Scheduled" => TOPDesk::getOpenIncidentsByOperatorGroupId($this->operatorGroupId, 'Scheduled')->count(),
-            default => throw new \Exception("Could not Match count for ".$this->title)
+            'Scheduled' => TOPDesk::getOpenIncidentsByOperatorGroupId($this->operatorGroupId, 'Scheduled')->count(),
+            default => throw new \Exception('Could not Match count for '.$this->title)
         };
     }
 }

@@ -2,15 +2,15 @@
 
 return [
 
-        'tiles' => [
-            'time_weather' => [
-                'open_weather_map_key' => env('OPEN_WEATHER_MAP_KEY'),
-                'open_weather_map_city' => 'Cranleigh',
-                'units' => 'metric', // 'metric' or 'imperial' (metric is default)
-                'buienradar_latitude' => env('BUIENRADAR_LATITUDE'),
-                'buienradar_longitude' => env('BUIENRADAR_LONGITUDE'),
-            ],
+    'tiles' => [
+        'time_weather' => [
+            'open_weather_map_key' => env('OPEN_WEATHER_MAP_KEY'),
+            'open_weather_map_city' => 'Cranleigh',
+            'units' => 'metric', // 'metric' or 'imperial' (metric is default)
+            'buienradar_latitude' => env('BUIENRADAR_LATITUDE'),
+            'buienradar_longitude' => env('BUIENRADAR_LONGITUDE'),
         ],
+    ],
 
     /*
      * The dashboard supports these themes:
@@ -42,6 +42,6 @@ return [
      * These stylesheets will be loaded when the dashboard is displayed.
      */
     'stylesheets' => [
-        'inter' => 'https://rsms.me/inter/inter.css'
+        'inter' => 'https://rsms.me/inter/inter.css',
     ],
 ];

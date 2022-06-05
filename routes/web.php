@@ -18,5 +18,3 @@ Route::get('/', function () {
 });
 
 Route::view('dashboard', 'dashboard');
-
-

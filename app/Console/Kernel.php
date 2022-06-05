@@ -18,7 +18,6 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command(\Spatie\TimeWeatherTile\Commands\FetchOpenWeatherMapDataCommand::class)->everyMinute();
         $schedule->command(\Spatie\TimeWeatherTile\Commands\FetchBuienradarForecastsCommand::class)->everyMinute();
-
     }
 
     /**
