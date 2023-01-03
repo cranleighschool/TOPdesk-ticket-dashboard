@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 
 class SlackTeam
 {
-
     protected function client(): PendingRequest
     {
         return Http::withToken(
@@ -26,7 +25,8 @@ class SlackTeam
                           ])
                           ->throw()
                           ->collect();
-            return $users[ 'users' ];
+
+            return $users['users'];
         });
     }
 
@@ -59,6 +59,4 @@ class SlackTeam
             ];
         })->sortBy('surname');
     }
-
-
 }

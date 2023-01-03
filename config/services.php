@@ -33,7 +33,7 @@ return [
 
     'slack' => [
         'token' => env('SLACK_APP_TOKEN'),
-        'teamId' => env('SLACK_TEAM_ID')
-    ]
+        'teamId' => env('SLACK_TEAM_ID'),
+    ],
 
 ];

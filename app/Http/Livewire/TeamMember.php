@@ -22,16 +22,13 @@ class TeamMember extends Component
     {
         $this->position = $position;
         $this->username = $username;
-
-
-
     }
 
     private function getTopDeskOperator(): \stdClass
     {
         return $this->topdeskClient()->get('operators', [
             'query' => 'networkLoginName=='.$this->username,
-        ])->throw()->object()[ 0 ];
+        ])->throw()->object()[0];
     }
 
     private function getIncidents(): Collection
@@ -49,8 +46,8 @@ class TeamMember extends Component
         return $this->getIncidents()
                     ->where('processingStatus.name', '=', 'Updated by user')
                     ->pluck('modificationDate')->map(function ($item) {
-                return Carbon::parse($item);
-            })->sortDesc();
+                        return Carbon::parse($item);
+                    })->sortDesc();
     }
 
     private function counts()
@@ -70,13 +67,12 @@ class TeamMember extends Component
             config('topdesk.application_username'),
             config('topdesk.application_password'),
         )->baseUrl('https://servicedesk.cranleigh.org/tas/api');
-
     }
 
     private function getSquarePhoto(): string
     {
         if (is_array($this->getSlack())) {
-            $image = $this->getSlack()[ 'avatar' ];
+            $image = $this->getSlack()['avatar'];
         } else {
             $image = $this->getPerson()->photo_uri;
         }
@@ -102,7 +98,6 @@ class TeamMember extends Component
     private function getPerson(): object
     {
         if (strtolower($this->username) === 'tnscsupport') {
-
             return (object) [
                 'photo_uri' => 'https://www.tnsc.co.uk/wp-content/uploads/2016/12/logo-yellow-light.png',
                 'job_titles' => [
@@ -111,11 +106,11 @@ class TeamMember extends Component
 
             ];
         }
-        return Cache::remember('get'.$this->username, now()->addDay(), function () {
 
+        return Cache::remember('get'.$this->username, now()->addDay(), function () {
             $response = Http::get('https://people.cranleigh.org/api/v1/person/'.$this->username)->throw()->object();
 
-            return $response->data[ 0 ];
+            return $response->data[0];
         });
     }
 
@@ -124,7 +119,6 @@ class TeamMember extends Component
         $slackTeam = new SlackTeam();
 
         return $slackTeam->get()->where('username', '=', $this->username)->first();
-
     }
 
     public function render()
