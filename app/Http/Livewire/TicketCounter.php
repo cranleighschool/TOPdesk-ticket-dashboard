@@ -43,6 +43,7 @@ class TicketCounter extends Component
         if (in_array($this->position, ['f2:f2', 'f3:f3', 'f4:f4'])) {
             return view('topdesk.ticket-counter-small', compact('department', 'count', 'title', 'class'));
         }
+
         return view('topdesk.ticket-counter', compact('department', 'count', 'title', 'class'));
     }
 
