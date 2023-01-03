@@ -120,7 +120,7 @@ class TeamMember extends Component
     {
         if (strtolower($this->username) === 'tnscsupport') {
             return (object) [
-                'photo_uri' => 'https://www.tnsc.co.uk/wp-content/uploads/2016/12/logo-yellow-light.png',
+                'photo_uri' => 'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/e7sx40xfqncokkoeyggz',
                 'job_titles' => [
                     'Help',
                 ],

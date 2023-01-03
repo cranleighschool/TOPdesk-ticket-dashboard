@@ -27,8 +27,8 @@
                         <td class="text-center font-weight-bold text-xl text-bold text-gray-900">{{ $count }}</td>
                     </tr>
                 @endforeach
-                <tr>
-                    <td class="text-left leading-relaxed">Recent Close</td>
+                <tr style="border-top:1px solid gray;">
+                    <td class="text-left leading-relaxed">Last Close</td>
                     <td colspan="2" class="text-center text-small text-muted" style="font-size: 0.8rem">
                         {{ $recentClose->closedDate->diffForHumans() }}
                     </td>

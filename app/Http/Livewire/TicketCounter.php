@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use FredBradley\TOPDesk\Facades\TOPDesk;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class TicketCounter extends Component
@@ -29,7 +30,7 @@ class TicketCounter extends Component
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
      */
-    public function render()
+    public function render(): View
     {
         $department = $this->department;
         $title = $this->title;
@@ -39,6 +40,9 @@ class TicketCounter extends Component
 
         $class = $this->getClassThreshold($count)[$title];
 
+        if (in_array($this->position, ['f2:f2', 'f3:f3', 'f4:f4'])) {
+            return view('topdesk.ticket-counter-small', compact('department', 'count', 'title', 'class'));
+        }
         return view('topdesk.ticket-counter', compact('department', 'count', 'title', 'class'));
     }
 
