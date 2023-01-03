@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Logic\SlackTeam;
 use Carbon\Carbon;
-use FredBradley\TOPDesk\Facades\TOPDesk;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -22,9 +21,6 @@ class TeamMember extends Component
     {
         $this->position = $position;
         $this->username = $username;
-
-
-
     }
 
     private function getTopDeskOperator(): \stdClass
@@ -42,6 +38,27 @@ class TeamMember extends Component
                 'pageSize' => 10000,
             ])->throw()->collect();
         });
+    }
+
+    private function getCloses(): Collection
+    {
+        return Cache::remember('getCloses4'.$this->username, now()->addMinute(), function () {
+            return $this->topdeskClient()->get('incidents', [
+                'query' => 'closed==true;operator.id=='.$this->getTopDeskOperator()->id,
+                'sort:desc' => 'closedDate',
+                'page_size' => 10000
+            ])->throw()->collect();
+        });
+    }
+
+    private function getMostRecentClose(): object
+    {
+        $array = $this->getCloses()
+                      ->sortByDesc('closedDate')
+                      ->first();
+
+        $array[ 'closedDate' ] = Carbon::parse($array[ 'closedDate' ]);
+        return (object) $array;
     }
 
     private function getUpdated(): Collection
@@ -136,6 +153,7 @@ class TeamMember extends Component
             'counts' => $this->counts(),
             'incidents' => $this->getIncidents(),
             'recentUpdate' => $this->getUpdated()->first(),
+            'recentClose' => $this->getMostRecentClose(),
         ]);
     }
 }

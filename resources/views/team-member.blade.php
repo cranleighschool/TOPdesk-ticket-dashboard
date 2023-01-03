@@ -6,10 +6,11 @@
         <div class="flex items-center space-x-2">
             <img class="w-10 h-10 rounded-full" src="{{ $imageData }}" alt="{{ $username }} Profile Image">
             <div class="font-medium dark:text-white">
-                <div class="text-left">{{ $username }}</div>
+                <div class="text-left">{{ $username==='TNSCSUPPORT' ? 'TNSC' : $username }}</div>
                 @if (is_array($slack) && $slack['status_text'] !== "")
-                <div class="text-left text-sm text-gray-500 dark:text-gray-400" style="font-size:0.55rem;">{{ $slack['status_text'] }}</div>
-                    @endif
+                    <div class="text-left text-sm text-gray-500 dark:text-gray-400"
+                         style="font-size:0.55rem;">{!! $slack['status_text'] !!}</div>
+                @endif
             </div>
         </div>
         <div class="flex flex-wrap">
@@ -26,6 +27,13 @@
                         <td class="text-center font-weight-bold text-xl text-bold text-gray-900">{{ $count }}</td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td class="text-left leading-relaxed">Recent Close</td>
+                    <td colspan="2" class="text-center text-small text-muted" style="font-size: 0.8rem">
+                        {{ $recentClose->closedDate->diffForHumans() }}
+                    </td>
+{{--                    <td class="text-center font-weight-bold text-xl text-bold text-gray-900"></td>--}}
+                </tr>
                 </tbody>
             </table>
         </div>
