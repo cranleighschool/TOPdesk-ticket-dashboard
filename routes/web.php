@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
-Route::view('dashboard', 'dashboard');
+Route::view('dashboard', 'dashboard')->name('dashboard');
+Route::view('team', 'team')->name('team');

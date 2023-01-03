@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'slack' => [
+        'token' => env('SLACK_APP_TOKEN'),
+        'teamId' => env('SLACK_TEAM_ID')
+    ]
+
 ];

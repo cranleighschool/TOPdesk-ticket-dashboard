@@ -6,7 +6,7 @@
     {{ $refreshIntervalInSeconds ? "wire:poll.{$refreshIntervalInSeconds}s" : ''  }}
 >
     <div
-        class="absolute inset-0 overflow-hidden p-4"
+        class="absolute inset-0 overflow-hidden p-2"
         @if($fade)
             style="-webkit-mask-image: linear-gradient(black, black calc(100% - 1rem), transparent)"
         @endif
