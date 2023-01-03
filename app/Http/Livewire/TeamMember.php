@@ -46,7 +46,7 @@ class TeamMember extends Component
             return $this->topdeskClient()->get('incidents', [
                 'query' => 'closed==true;operator.id=='.$this->getTopDeskOperator()->id,
                 'sort:desc' => 'closedDate',
-                'page_size' => 10000
+                'page_size' => 10000,
             ])->throw()->collect();
         });
     }
@@ -57,7 +57,8 @@ class TeamMember extends Component
                       ->sortByDesc('closedDate')
                       ->first();
 
-        $array[ 'closedDate' ] = Carbon::parse($array[ 'closedDate' ]);
+        $array['closedDate'] = Carbon::parse($array['closedDate']);
+
         return (object) $array;
     }
 
