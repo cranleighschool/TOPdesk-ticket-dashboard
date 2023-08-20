@@ -4,9 +4,16 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:fredbradley/icinga-wire-dash"
+        }
+    ],
     "require": {
-        "php": "^8.0",
-        "fredbradley/topdesk": "dev-feature/version2",
+        "php": "^8.1",
+        "fredbradley/icinga-wire-dash": "dev-master",
+        "fredbradley/topdesk": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.11",
@@ -15,6 +22,7 @@
         "spatie/laravel-dashboard": "^2.1"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
@@ -52,6 +60,7 @@
             "@php artisan key:generate --ansi"
         ]
     },
+
     "extra": {
         "laravel": {
             "dont-discover": []
@@ -61,7 +70,6 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
+
 }
