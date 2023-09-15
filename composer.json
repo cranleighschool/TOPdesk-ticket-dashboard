@@ -13,7 +13,7 @@
     "require": {
         "php": "^8.1",
         "fredbradley/icinga-wire-dash": "dev-master",
-        "fredbradley/topdesk": "^2.0",
+        "fredbradley/topdesk": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.11",
