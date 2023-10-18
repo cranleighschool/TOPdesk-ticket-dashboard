@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')->name('dashboard');
 Route::view('team', 'team')->name('team');
 Route::view('icinga', 'icinga.essential')->name('icinga');
+Route::view('tripphones', 'tripphones')->name('tripphones');
