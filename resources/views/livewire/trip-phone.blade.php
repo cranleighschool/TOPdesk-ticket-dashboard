@@ -1,4 +1,4 @@
-<x-dashboard-tile :position="$position" refresh-interval="60">
+<x-dashboard-tile :position="$position" refresh-interval="60000">
     <div
         class="grid gap-0 justify-items-center"
         style="grid-template-rows: auto 1fr auto;"
@@ -26,8 +26,24 @@
                             @foreach ($loans as $loan)
                                 <tr class="p-0">
                                     <td class="p-0">{{ $loan['loanee'] }}</td>
-                                    <td>{{ $loan['start_date_formatted'] }}</td>
-                                    <td>{{ $loan['return_date_formatted'] }}</td>
+                                    <td>@if (\Carbon\Carbon::parse($loan['start_date'])->isToday())
+                                            <i class="fi fi-rr-light-emergency-on text-red-500"></i><strong>
+                                                @endif
+                                                {{ $loan['start_date_formatted'] }}
+                                                @if (\Carbon\Carbon::parse($loan['start_date'])->isToday())
+                                            </strong><i class="fi fi-rr-light-emergency-on text-red-500"></i>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (\Carbon\Carbon::parse($loan['return_date'])->isToday())
+                                            <i class="fi fi-rr-light-emergency-on text-red-500"></i><strong>
+                                                @endif
+                                                {{ $loan['return_date_formatted'] }}
+                                                @if (\Carbon\Carbon::parse($loan['return_date'])->isToday())
+                                            </strong><i class="fi fi-rr-light-emergency-on text-red-500"></i>
+                                        @endif
+                                    </td>
+
                                     <td>
                                         @if ($loan['start_date'] < now() && $loan['return_date'] > now())
                                             <span class="text-red-500">In Play</span>
