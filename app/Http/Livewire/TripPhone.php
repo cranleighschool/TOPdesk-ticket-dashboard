@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -20,10 +21,10 @@ class TripPhone extends Component
             $loan['start_date'] = Carbon::parse($loan['start_date']);
             $loan['return_date'] = Carbon::parse($loan['return_date']);
             return $loan;
-        });
+        })->sortBy('start_date');
     }
 
-    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function render(): Renderable
     {
         return view('livewire.trip-phone');
     }
