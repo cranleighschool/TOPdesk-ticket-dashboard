@@ -17,9 +17,10 @@ class TripPhone extends Component
     {
         $this->position = $position;
         $this->phone = $phone;
-        $this->loans = collect($phone['loans'])->map(function($loan) {
+        $this->loans = collect($phone['loans'])->map(function ($loan) {
             $loan['start_date'] = Carbon::parse($loan['start_date']);
             $loan['return_date'] = Carbon::parse($loan['return_date']);
+
             return $loan;
         })->sortBy('start_date');
     }
