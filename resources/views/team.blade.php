@@ -1,6 +1,14 @@
 <x-dashboard>
     @php
         $users = (new \App\Logic\SlackTeam())->get()->pluck('username');
+        $users = [
+            'FRB','SPKM',
+            'MJO','MWJS',
+            'RSS','DJF',
+            'SGSM','CCT',
+            'AHJT','FRB',
+            ];
+
     @endphp
     {{-- replace this by any tiles --}}
     <livewire:team-member position="a1:a4" username="{{ $users[0] }}"/>
@@ -19,7 +27,7 @@
     <livewire:team-member position="c5:c8" username="{{ $users[7] }}"/>
     <livewire:team-member position="d5:d8" username="{{ $users[8] }}"/>
     <livewire:team-member position="e5:e8" username="{{ $users[9] }}"/>
-    <livewire:team-member position="f5:f8" username="TNSCSUPPORT"/>
+{{--    <livewire:team-member position="f5:f8" username="TNSCSUPPORT"/>--}}
 
     {{--    <livewire:time-and-date position="f1" />--}}
     {{--    <livewire:ticket-counter position="f3" department="{{ request('department') }}" title="Waiting for user" />--}}

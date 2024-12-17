@@ -15,9 +15,10 @@ use Livewire\Component;
 class TeamMember extends Component
 {
     /** @var string */
-    public $position;
+    public string $position;
+    public string $username;
 
-    public function mount(string $position, string $username)
+    public function mount(string $position, string $username): void
     {
         $this->position = $position;
         $this->username = $username;
