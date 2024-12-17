@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use FredBradley\TOPDesk\Facades\TOPDesk;
 use Livewire\Component;
