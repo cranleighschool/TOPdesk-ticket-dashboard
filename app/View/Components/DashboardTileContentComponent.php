@@ -2,11 +2,12 @@
 
 namespace App\View\Components;
 
-use Spatie\Dashboard\Http\Components\DashboardTileComponent;
+use Illuminate\Contracts\View\View;
+use Spatie\Dashboard\Components\DashboardTileComponent;
 
 class DashboardTileContentComponent extends DashboardTileComponent
 {
-    public function render()
+    public function render(): View
     {
         return view('content-block');
     }
